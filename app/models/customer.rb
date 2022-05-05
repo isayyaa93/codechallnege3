@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
     has_many :reviews
-    has_many :restaurants, through: :restaurants
+    has_many :restaurants, through: :reviews
 
 #     Customer#full_name
 # returns the full name of the customer, with the
@@ -14,7 +14,7 @@ class Customer < ActiveRecord::Base
     # returns the restaurant instance that has the highest star rating from this customer
 
     def favorite_restaurant
-        Restaurant.all.order(:star_rating).first
+        Restaurant.all.order(star_rating: asc).first
     end
 
 #     Customer#add_review(restaurant, rating)
